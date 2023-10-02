@@ -1,2 +1,2 @@
 #!/bin/bash
-sort list | uniq -u
+sort | uniq -c | grep -E '^\s*1\s'

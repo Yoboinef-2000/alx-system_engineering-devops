@@ -9,17 +9,19 @@ if [ -e "$filePath" ];
 then
 	echo "school file exists"
 	
-	if [ -s "$filePath" ]; then
+	if [ -s "$filePath" ];
+	then
         	echo "school file is not empty"
-
-		if [ -f "$filePath" ]; then
-            		echo "school is a regular file"
-        	else
-			:
-        	fi
     	else
         	echo "school file is empty"
-    	fi
+	fi
+
+	if [ -f "$filePath" ];
+        then
+                echo "school is a regular file"
+        else
+                :
+        fi
 else
     echo "school file does not exist"
 fi

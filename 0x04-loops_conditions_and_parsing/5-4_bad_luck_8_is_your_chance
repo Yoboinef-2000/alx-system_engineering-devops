@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+# This script displays "Best School" 10 times using the while loop
+# Only addtional conditions:
+# According to the Chinese culture, the number 4 is considered bad luck
+# so "bad luck" should be printed on the 4th iteration
+# Conversely, the number 8 is considered good luck
+# so "bad luck" should be printed on the 8th iteration
+# Talking about the Chinese culture, here is some very valuable information
+# that everyone should know.
+# I was born in the year of the Dragon
+# It is only right that this maginificent specimen of a human being ie me
+# should be born in the Dragon Year.
+# Shout out to all my Dragons.
+i=1
+while [ $i -le 10 ]
+do
+	if [ $i -eq 4 ]
+	then
+		echo "bad luck"
+	elif [ $i -eq 8 ]
+	then
+		echo "good luck"
+	else
+		echo "Best School"
+	fi
+	((i++))
+
+done

@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+# This script prints numbers 1 to 20 using the while loop
+# Only addtional conditions:
+# According to the Chinese culture, the number 4 is considered bad luck
+# so "bad luck from China" should be printed on the 4th iteration
+# According to the Japanese culture, the number 9 is considered bad luck
+# so "bad luck from Japan" should be printed on the 9th iteration
+# According to the Italian culture, the number 17 is considered bad luck
+# so "bad luck from Italy" should be printed on the 17th iteration
+i=1
+while [ $i -le 20 ]
+do
+	case "$i" in
+		4)
+			echo "bad luck from China"
+			;;
+		9)
+                        echo "bad luck from Japan"
+                        ;;
+		17)
+                        echo "bad luck from Italy"
+                        ;;
+		*)
+			echo "$i"
+			;;
+	esac
+	((i++))
+
+done

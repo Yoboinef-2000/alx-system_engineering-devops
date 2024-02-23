@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# This script displays "To infinty and beyond" indefintely.
+# But in between each iteration of the loop, a sleep 2 command is going to be added.
+# It shoudld also display "I am invincible!!!" when receiving a SIGTERM signal.
+terminate()
+{
+	echo "I am invincible!!!"
+	exit 0
+}
+trap terminate SIGTERM
+while true;
+do
+	echo "To infinity and beyond"
+	sleep 2
+done

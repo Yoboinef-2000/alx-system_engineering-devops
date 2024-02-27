@@ -2,7 +2,7 @@
 
 laTelephone = ARGV[0]
 match = /^\d{10}$/
-if laTelephone =~ match
+if (match = laTelephone.match(match))
   puts match
 else
   puts ""

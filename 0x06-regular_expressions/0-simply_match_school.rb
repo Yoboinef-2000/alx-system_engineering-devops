@@ -1,9 +1,12 @@
 #!/usr/bin/env ruby
 
 string = ARGV[0]
-match = string.match(/School/)
-if (match)
-  puts match
+matches = string.scan(/School/)
+if matches.any?
+  matches.each do |match|
+    print match
+  end
+  puts ""
 else
   puts ""
 end

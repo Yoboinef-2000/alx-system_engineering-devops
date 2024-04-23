@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# This script fixes whatever needs to be fixed after connecting to a Docker Container
+sudo service apache2 start

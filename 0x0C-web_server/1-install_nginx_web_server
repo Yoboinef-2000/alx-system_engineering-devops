@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# This bash script installs nginx on my remote server
+apt-get install -y nginx
+
+echo "server {
+        listen 80;
+        root /var/www/html;
+        index index.nginx-debian.html;
+        location / {
+            echo 'Hello World!' > /var/www/html/index.nginx-debian.html;
+        }
+}" > /etc/nginx/sites-available/default
+
+nginx -s reload

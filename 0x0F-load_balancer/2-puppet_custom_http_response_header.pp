@@ -16,7 +16,3 @@ file_line {'changeX' :
   require => Package['nginx'],
 }
 
-service { 'nginx':
-  ensure  => running,
-  require => Package['nginx'],
-}

@@ -1,8 +1,13 @@
 # This puppet manifest configures a brand new Ubuntu machine
 
-exec { 'updateANDinstall':
-  command => '/usr/bin/apt-get update && /usr/bin/apt-get -y install nginx',
+exec { 'updatePackages':
+  command => '/usr/bin/apt-get update',
 }
+
+exec { 'installNGINX':
+  command => '/usr/bin/apt-get -y install nginx',
+}
+
 file_line {'changeX' :
   ensure  => present,
   path    => '/etc/nginx/sites-available/default',
@@ -10,6 +15,7 @@ file_line {'changeX' :
   line    => 'add_header X-Served-By $hostname;',
   require => Package['nginx'],
 }
+
 service { 'nginx':
   ensure  => running,
   require => Package['nginx'],

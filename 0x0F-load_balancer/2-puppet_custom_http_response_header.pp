@@ -9,3 +9,7 @@ file_line {'changeX' :
   after  => 'listen 80 default_server;',
   line   => 'add_header X-Served-By $hostname;',
 }
+service { 'nginx':
+  ensure  => running,
+  require => Package['nginx'],
+}

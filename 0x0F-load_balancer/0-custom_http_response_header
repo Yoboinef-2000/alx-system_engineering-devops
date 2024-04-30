@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# This bash script will configure our Nginx servers so that their
+# response contains a custom header
+# sudo install nginx
+sudo service nginx start
+sudo ufw allow 'Nginx HTTP'
+sed -i "/listen 80 default_server;/a add_header X-Served_By $hostname;" /etc/nginx/sites-available/default
+sudo service nginx restart

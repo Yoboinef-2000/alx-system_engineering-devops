@@ -1,4 +1,4 @@
-#!/usr/env/bash
+#!/usr/bin/env bash
 # This bash script fixes the issue that is keeping
 # our Ubuntu container's Nginx installation from
 # from listening on port 80.

@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+# This script displays information about subdomains.
+domain=$1
+subdomain=$2
+
+# This condition checks whether the 
+# length of the second argumet is non-zero
+
+if [ -n "${subdomain}" ];
+then
+    recordType1=$(dig "www.$domain" | grep -A1 'ANSWER SECTION:' | tail -n 1 | awk '{print $4}')
+    destination1=$(dig "www.$domain" | grep -A1 'ANSWER SECTION:' | tail -n 1 | awk '{print $5}')
+    echo "The subdomain ${subdomain} is a ${recordType1} record and points to ${destination1}"
+else
+    recordType1=$(dig "www.$domain" | grep -A1 'ANSWER SECTION:' | tail -n 1 | awk '{print $4}')
+    destination1=$(dig "www.$domain" | grep -A1 'ANSWER SECTION:' | tail -n 1 | awk '{print $5}')
+    echo "The subdomain ${domain} is a ${recordType1} record and points to ${destination1}"
+
+    recordType2=$(dig "lb-01.$domain" | grep -A1 'ANSWER SECTION:' | tail -n 1 | awk '{print $4}')
+    destination2=$(dig "lb-01.$domain" | grep -A1 'ANSWER SECTION:' | tail -n 1 | awk '{print $5}')
+    echo "The subdomain lb-01 is a ${recordType2} record and points to ${destination2}"
+
+    recordType3=$(dig "web-01.$domain" | grep -A1 'ANSWER SECTION:' | tail -n 1 | awk '{print $4}')
+    destination3=$(dig "web-01.$domain" | grep -A1 'ANSWER SECTION:' | tail -n 1 | awk '{print $5}')
+    echo "The subdomain web-01 is a ${recordType3} record and points to ${destination3}"
+
+    recordType4=$(dig "web-02.$domain" | grep -A1 'ANSWER SECTION:' | tail -n 1 | awk '{print $4}')
+    destination4=$(dig "web-02.$domain" | grep -A1 'ANSWER SECTION:' | tail -n 1 | awk '{print $5}')
+    echo "The subdomain web-02 is a ${recordType4} record and points to ${destination4}"
+
+fi
+
+# I hate shell scripting

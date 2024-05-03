@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
 # This bash script fixes the issue that is keeping
-sudo apt-get -y update
-sudo apt-get -y install nginx
-sudo ufw allow 'Nginx HTTP'
+# our Ubuntu container's Nginx installation from
+# from listening on port 80.
+
+# BTW, my nginx server was already configured to 
+# listen on port 80 so this script basically did nothing.
+
 sudo sed -i 's/8080/80/g' /etc/nginx/sites-enabled/default
 sudo service nginx restart

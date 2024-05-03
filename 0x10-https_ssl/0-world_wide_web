@@ -6,34 +6,60 @@ subdomain=$2
 # This condition checks whether the 
 # length of the second argumet is non-zero
 
-iHavetoHaveAFunctionasPertheAssignmentRequirement(){
-    if [ -n "${subdomain}" ];
-    then
-        recordType1=$(dig "www.$domain" | grep -A1 'ANSWER SECTION:' | tail -n 1 | awk '{print $4}')
-        destination1=$(dig "www.$domain" | grep -A1 'ANSWER SECTION:' | tail -n 1 | awk '{print $5}')
-        echo "The subdomain ${subdomain} is a ${recordType1} record and points to ${destination1}"
-    else
-        recordType1=$(dig "www.$domain" | grep -A1 'ANSWER SECTION:' | tail -n 1 | awk '{print $4}')
-        destination1=$(dig "www.$domain" | grep -A1 'ANSWER SECTION:' | tail -n 1 | awk '{print $5}')
-        echo "The subdomain www is a ${recordType1} record and points to ${destination1}"
+# iHavetoHaveAFunctionasPertheAssignmentRequirement(){
+#     if [ -n "${subdomain}" ];
+#     then
+#         recordType1=$(dig "www.$domain" | grep -A1 'ANSWER SECTION:' | tail -n 1 | awk '{print $4}')
+#         destination1=$(dig "www.$domain" | grep -A1 'ANSWER SECTION:' | tail -n 1 | awk '{print $5}')
+#         echo "The subdomain ${subdomain} is a ${recordType1} record and points to ${destination1}"
+#     else
+#         recordType1=$(dig "www.$domain" | grep -A1 'ANSWER SECTION:' | tail -n 1 | awk '{print $4}')
+#         destination1=$(dig "www.$domain" | grep -A1 'ANSWER SECTION:' | tail -n 1 | awk '{print $5}')
+#         echo "The subdomain www is a ${recordType1} record and points to ${destination1}"
 
-        recordType2=$(dig "lb-01.$domain" | grep -A1 'ANSWER SECTION:' | tail -n 1 | awk '{print $4}')
-        destination2=$(dig "lb-01.$domain" | grep -A1 'ANSWER SECTION:' | tail -n 1 | awk '{print $5}')
-        echo "The subdomain lb-01 is a ${recordType2} record and points to ${destination2}"
+#         recordType2=$(dig "lb-01.$domain" | grep -A1 'ANSWER SECTION:' | tail -n 1 | awk '{print $4}')
+#         destination2=$(dig "lb-01.$domain" | grep -A1 'ANSWER SECTION:' | tail -n 1 | awk '{print $5}')
+#         echo "The subdomain lb-01 is a ${recordType2} record and points to ${destination2}"
 
-        recordType3=$(dig "web-01.$domain" | grep -A1 'ANSWER SECTION:' | tail -n 1 | awk '{print $4}')
-        destination3=$(dig "web-01.$domain" | grep -A1 'ANSWER SECTION:' | tail -n 1 | awk '{print $5}')
-        echo "The subdomain web-01 is a ${recordType3} record and points to ${destination3}"
+#         recordType3=$(dig "web-01.$domain" | grep -A1 'ANSWER SECTION:' | tail -n 1 | awk '{print $4}')
+#         destination3=$(dig "web-01.$domain" | grep -A1 'ANSWER SECTION:' | tail -n 1 | awk '{print $5}')
+#         echo "The subdomain web-01 is a ${recordType3} record and points to ${destination3}"
 
-        recordType4=$(dig "web-02.$domain" | grep -A1 'ANSWER SECTION:' | tail -n 1 | awk '{print $4}')
-        destination4=$(dig "web-02.$domain" | grep -A1 'ANSWER SECTION:' | tail -n 1 | awk '{print $5}')
-        echo "The subdomain web-02 is a ${recordType4} record and points to ${destination4}"
+#         recordType4=$(dig "web-02.$domain" | grep -A1 'ANSWER SECTION:' | tail -n 1 | awk '{print $4}')
+#         destination4=$(dig "web-02.$domain" | grep -A1 'ANSWER SECTION:' | tail -n 1 | awk '{print $5}')
+#         echo "The subdomain web-02 is a ${recordType4} record and points to ${destination4}"
 
+#     fi
+# }
+
+# iHavetoHaveAFunctionasPertheAssignmentRequirement
+
+get_info() {
+    local sub=$1
+    local result
+
+    result=$(dig "$sub.$domain" | grep -A1 'ANSWER SECTION:')
+    if [ -z "$result" ]; then
+        echo "No information found for subdomain $sub"
+        return
     fi
+
+    local recordType=$(echo "$result" | tail -n 1 | awk '{print $4}')
+    local destination=$(echo "$result" | tail -n 1 | awk '{print $5}')
+    
+    echo "The subdomain $sub is a $recordType record and points to $destination"
 }
 
-iHavetoHaveAFunctionasPertheAssignmentRequirement
-
+# If subdomain is provided, get info for that subdomain
+if [ -n "$subdomain" ]; then
+    get_info "www"
+else
+    # Otherwise, get info for all subdomains
+    get_info "www"
+    get_info "lb-01"
+    get_info "web-01"
+    get_info "web-02"
+fi
 # I hate shell scripting
 # My bad for the ugly look
 # I am sure there is a less redundant way to write this.

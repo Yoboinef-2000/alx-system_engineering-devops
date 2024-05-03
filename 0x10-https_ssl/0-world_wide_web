@@ -31,3 +31,6 @@ else
 fi
 
 # I hate shell scripting
+# My bad for the ugly look
+# I am sure there is a less redundant way to write this.
+# But I do not want to discover that way.

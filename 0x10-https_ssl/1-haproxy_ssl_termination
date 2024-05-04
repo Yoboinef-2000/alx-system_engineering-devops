@@ -1,12 +1,3 @@
-#!/usr/bin/env bash
-# This script creates a certificate using certbot and configure HAproxy
-# to accept encrypted traffic to my subdomain www.
-
-# sudo apt-get -y update
-# sudo apt-get install -y certbot
-# sudo certbot certonly --standalone --preferred-challenges http -d nefalbs.tech,www.neflabs.tech -y -m nhagos2000@gmail.com
-# The email can be any email btw. You can simply type in test@test.com and it wont know the difference
-
 global
         log /dev/log    local0
         log /dev/log    local1 notice

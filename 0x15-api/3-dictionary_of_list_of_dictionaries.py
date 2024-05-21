@@ -6,8 +6,8 @@ extend the Python Script to export data
 in the JSON format.
 """
 
-import requests
 import json
+import requests
 
 if __name__ == "__main__":
 

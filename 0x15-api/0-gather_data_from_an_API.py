@@ -6,8 +6,8 @@ for a given employee ID, returns information about
 his/her TODO list progress.
 """
 
-import sys
 import requests
+import sys
 
 if __name__ == "__main__":
 
@@ -26,7 +26,7 @@ if __name__ == "__main__":
     doneTasks = [todo for todo in todos if todo.get('completed')]
     numberOfDoneTasks = len(doneTasks)
 
-    print(f"Employee {employeeName} is done with tasks(\
-          {numberOfDoneTasks}/{totalTasks}):")
+    print(f"Employee {employeeName} is done with tasks("
+          f"{numberOfDoneTasks}/{totalTasks}):")
     for task in doneTasks:
         print(f"\t {task.get('title')}")

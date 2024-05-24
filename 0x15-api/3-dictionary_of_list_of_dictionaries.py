@@ -20,7 +20,7 @@ if __name__ == "__main__":
 
     for user in users:
         userId = user.get('id')
-        employeeName = user.get('name')
+        employeeName = user.get('username')
 
         todosResponse = requests.get(f'{theAPI}todos?userId={userId}')
         todos = todosResponse.json()

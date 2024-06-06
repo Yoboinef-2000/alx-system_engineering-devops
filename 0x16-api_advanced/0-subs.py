@@ -13,14 +13,13 @@ import requests
 def number_of_subscribers(subreddit):
     """Refer to the commented out lines at the top."""
 
-    url = "https://www.reddit.com/r/{}/about.json".format(subreddit)
+    # theSubreddit = sys.argv[1]
+    theAPI = "https://www.reddit.com/r/"
+    userResponse = requests.get('{}{}/about.json'.format(theAPI, subreddit),
+                                allow_redirects=False)
 
-    response = requests.get(url, allow_redirects=False)
-
-    if response.status_code == 200:
-        data = response.json().get('data', {})
-        print('OK')
-        return data.get('subscribers', 0)
+    if userResponse.status_code == 200:
+        return (userResponse.json()['data']['subscribers'])
+    
     else:
-        print('OK')
         return 0

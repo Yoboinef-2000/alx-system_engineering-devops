@@ -12,7 +12,8 @@ import requests
 def top_ten(subreddit):
     """Refer to the commented out lines above."""
     here = "https://www.reddit.com/r/"
-    gerrrit = requests.get("{}{}/hot.json?limit=9".format(here, subreddit))
+    gerrrit = requests.get("{}{}/hot.json?limit=9".format(here, subreddit),
+                           allow_redirects=False)
 
     if gerrrit.status_code == 200:
         hotInHere = gerrrit.json().get('data', {}).get('children', [])

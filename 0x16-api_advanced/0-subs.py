@@ -19,7 +19,9 @@ def number_of_subscribers(subreddit):
                                 allow_redirects=False)
 
     if userResponse.status_code == 200:
+        print('OK')
         return (userResponse.json()['data']['subscribers'])
     
     else:
+        print('OK')
         return 0

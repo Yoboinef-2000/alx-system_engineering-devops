@@ -14,11 +14,13 @@ def number_of_subscribers(subreddit):
     """Refer to the commented out lines at the top."""
 
     url = "https://www.reddit.com/r/{}/about.json".format(subreddit)
-    
+
     response = requests.get(url, allow_redirects=False)
-    
+
     if response.status_code == 200:
         data = response.json().get('data', {})
+        print('OK')
         return data.get('subscribers', 0)
     else:
+        print('OK')
         return 0

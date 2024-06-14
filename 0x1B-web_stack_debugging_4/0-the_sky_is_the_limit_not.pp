@@ -12,8 +12,7 @@
 # So I am just going to play around with that and whatever sticks, sticks.
 
 exec {'letsSeeIfThisWorks':
-  command  => 'sudo sed -i "s/ULIMIT=\"-n 15\"/ULIMIT=\"-n 4096\"/" /etc/default/nginx',
-  before   => Exec['reloooadTheThing'],
+  command  => "sed -i 's/15/4096/' /etc/default/nginx",
   provider => shell,
 }
 

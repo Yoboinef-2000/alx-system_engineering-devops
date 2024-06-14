@@ -18,6 +18,6 @@ exec {'letsSeeIfThisWorks':
 }
 
 exec { 'reloooadTheThing':
-  command  => 'sudo service nginx reload',
+  command  => 'sudo service nginx restart',
   provider => shell,
 }

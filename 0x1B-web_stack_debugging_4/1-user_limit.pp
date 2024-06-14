@@ -3,6 +3,6 @@
 # a file without any error messsage.
 
 exec {'createHolberton':
-  command  => 'sudo adduser holberton',
+  command  => 'sed -i s/holberton/foo/ /etc/security/limits.conf',
   provider => shell,
 }

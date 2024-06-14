@@ -11,8 +11,9 @@
 # One of the comments was that ulimit was set to 4096.
 # So I am just going to play around with that and whatever sticks, sticks.
 
-exec { 'letsSeeIfThisWorks':
-  command  => "sed -i 's/15/4096/' /etc/default/nginx",
+exec {'letsSeeIfThisWorks':
+  command  => 'sudo sed -i "s/ULIMIT=\"-n 15\"/ULIMIT=\"-n 4096\"/" /etc/default/nginx',
+  before   => Exec['reloooadTheThing'],
   provider => shell,
 }
 
